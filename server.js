@@ -1,9 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-// const router = require('./routes/index');
 const routerUser = require('./routes/userroutes');
-// const routerProduct = require('./routes/productroutes');
+const routerProduct = require('./routes/productroutes');
 
 const ecomapp = express();
 const PORT= 3001;
@@ -12,9 +11,8 @@ const MONGODB_URI = 'mongodb+srv://firstUser:FG12XZ123@cluster0.y3jty.mongodb.ne
 ecomapp.use(cors());
 ecomapp.use(express.urlencoded({extended: true}));
 ecomapp.use(express.json());
-// ecomapp.use('/v1', router);
 ecomapp.use('/v2', routerUser);
-// ecomapp.use('/v3', routerProduct);
+ecomapp.use('/v3', routerProduct);
 
 mongoose.connect(MONGODB_URI, {useNewUrlParser: true});
 mongoose.connection.once('open',()=>{

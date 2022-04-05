@@ -26,7 +26,7 @@ const productSchema = new mongoose.Schema({
       type: Number,
     },
     count:{
-      type: String,
+      type: Number,
     }
   }
 });
