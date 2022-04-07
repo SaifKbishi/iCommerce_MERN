@@ -11,7 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { nanoid } from 'nanoid'
 const greenColor = '#afd275';
 
-const {getProductDetailsData,getProductsData} = require('../../DAL/DAL');
+const {getProductDetailsData, getProductsData} = require('../../DAL/DAL');
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);

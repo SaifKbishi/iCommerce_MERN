@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "nodemon": "nodemon server.js"
+    "nodemon": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\""
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,8 @@
     "express": "^4.17.3",
     "mongoose": "^6.2.9",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0"
   }
 }
