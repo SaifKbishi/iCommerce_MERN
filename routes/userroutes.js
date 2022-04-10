@@ -8,8 +8,9 @@ router.get('/users', (req, res)=>{
   });
 });
 
-router.get('/users/:id', (req, res)=>{
+router.get('/users/id', (req, res)=>{
   User.findById(req.params.id, (err, user)=>{
+    // console.log('req.params._id, ', req.params.id)
     if(!user){
       res.status(404).send('No result found');
     }else{

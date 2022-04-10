@@ -28,7 +28,7 @@ const Products = () => {
       setLoading(true);
       try{
         const products = await getProductsData(source);
-        console.log('products ', products)
+        // console.log('products ', products)
         setProductsData(products.data);
         setFilterData(products.data);
         setLoading(false);
@@ -86,6 +86,7 @@ const Products = () => {
     setFilterData(filteredData);
   }
   const routeChange=(prodId)=>{
+    // console.log('prodId', prodId)
     let path = `/products/${prodId}`; 
     navigate(path);
     // history.push(path);
@@ -111,7 +112,7 @@ const Products = () => {
               value={searchTerm}
               key={nanoid()}
               disableClearable
-              autoFocus
+              // autoFocus
               onChange={(e)=>{
                 setSearchTerm(e.target.value);
               }}
@@ -146,7 +147,7 @@ const Products = () => {
                         <Typography sx={{py:1}}>
                           price: {value.price}$
                         </Typography>                            
-                        <CustomizedButton variant="outlined" sx={{border:'2px solid', py:'5px'}} onClick={()=>routeChange(value.id)} data-testid="buy-me">Buy Me</CustomizedButton>                            
+                        <CustomizedButton variant="outlined" sx={{border:'2px solid', py:'5px'}} onClick={()=>routeChange(value._id)} data-testid="buy-me">Buy Me</CustomizedButton>                            
                       </CardContent>
                     </Card>
                   </Grid>

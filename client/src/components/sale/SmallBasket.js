@@ -13,7 +13,7 @@ const SmallBasket = () => {
 
   const cartItems = (cartItem)=>{
     return(
-      <Box sx={{display:'flex', flexDirection:{xs:'row', sm:'row'}, p:1, alignItems: 'center' }} key={cartItem.id}>
+      <Box sx={{display:'flex', flexDirection:{xs:'row', sm:'row'}, p:1, alignItems: 'center' }} key={cartItem._id}>
         <Box >
           <img
           src={`${cartItem.image}`}          

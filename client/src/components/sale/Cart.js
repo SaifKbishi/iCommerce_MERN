@@ -7,6 +7,7 @@ import {Container, Box, Typography, Button, Rating  } from '@mui/material/';
 
 const Cart = () => {
   const state = useSelector((state)=> state.handleCart);//handleCart from the reducer
+  console.log('Cart state', state)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const routeToCheckOut =()=>{
@@ -15,6 +16,7 @@ const Cart = () => {
   }
 
   const cartItems = (cartItem)=>{
+    console.log('cartItem',cartItem)
     return(
       <Container sx={{display:'flex', flexDirection:{xs:'column', sm:'row'}, my:2,p:1, background:'rgba(194, 202, 208, 0.3)', borderRadius:'20px', alignItems: 'center' }} key={cartItem.id}>
         <Box >

@@ -112,6 +112,7 @@ export default function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 3, mx:1, color: 'black', display: 'block' }} textAlign="center"
                 >Contact</MUILink>
+
             </Menu>
           </Box>
           {/**END MOBILE for left menu*/}
@@ -132,7 +133,7 @@ export default function Navbar() {
              <MUILink component={RouterLink} to="/contact" color="inherit" underline="hover" 
               onClick={handleCloseNavMenu}
               sx={{ my: 3, mx:1, color: 'secondary', display: 'block' }}
-              >CONTACT</MUILink>
+              >CONTACT</MUILink>        
           </Box>
           {/* <Search>
             <SearchIconWrapper>

@@ -30,6 +30,7 @@ const ProductInfo = () => {
         //   cancelToken: source.token,
         // });
         const productDetails = await getProductDetailsData(source, params.id);
+        // console.log('productDetails', productDetails)
         setProduct(productDetails.data);
         setLoading(false);
       }catch(error){
