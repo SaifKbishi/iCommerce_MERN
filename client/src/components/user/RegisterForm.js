@@ -1,15 +1,38 @@
-import React, { useState} from 'react';
-import {Box, Typography, Button, Divider, Checkbox} from '@mui/material/';
-import TextInput  from '../../components/utils/TextInput';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import { useNavigate, useParams, Link as RouterLink } from "react-router-dom";
+import {Link as MUILink} from '@mui/material/';
+import {Box, Typography,TextField, Button, Divider, Checkbox, Tooltip} from '@mui/material/';
 
 const RegisterForm = () => {
-  const initialState = {firstname:'', amount:'', description:'', repeats:'', date:'', expenseType:'expense', expense:'expense', income:'income' };
+  // const initialState =   {name:{firstname:'', lastname:'',}, username:'', password:'', phonenumber:'', email:'', image:'', address:{country:'',city:'', street:'', number:'',zipcode:'',},};
+  const initialState =   {fullname:'', phonenumber:'', email:'', image:'', address:'',};
   const [register, setRegister] = useState(initialState); 
+  const navigate = useNavigate();
+
+  const handleSubmit =(e)=>{
+    e.preventDefault();
+    const submitUserDetails =async()=>{
+      try {
+        const responseData = await axios.post(`/v2/users`, register);
+        navigate(`/users/${responseData.data._id}`);
+      } catch (error) {
+        console.log(`Error registering your Info. ${error}.`)
+      }
+    }
+    submitUserDetails();
+
+  }
 
   const handleChange = (e)=>{
     console.log(e.target.value,' ', e.target.name);
     setRegister({...register,[e.target.name]:e.target.value});
   }
+
+  const handleCancel=()=>{
+    navigate(`/products`);
+  }
+
   return (
     <>      
       <Box sx={{width:{xs:'90%' ,md:'650px'}}}>
@@ -20,19 +43,35 @@ const RegisterForm = () => {
         <Typography sx={{fontSize:{xs:'15px', md:'40px'}, m:1, }}>
           Shipping information
         </Typography>
-        <TextInput T_htmlFor="firstname" T_labelText='First Name' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='firstname' TF_label='First Name' TF_required={true} TF_size='small' />        
-        <TextInput T_htmlFor="lastname" T_labelText='Last Name' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='lastname' TF_label='Last Name' TF_required={true} TF_size='small' />
-        <TextInput T_htmlFor="address" T_labelText='Address' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='address' TF_label='Address' TF_required={true} TF_size='small' />
-        <TextInput T_htmlFor="city" T_labelText='City' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='city' TF_label='City' TF_required={true} TF_size='small' />
-        <TextInput T_htmlFor="zipcode" T_labelText='Zip Code' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='zipcode' TF_label='Zip Code' TF_required={true} TF_size='small' />
-        <Divider sx={{my:1, width:'100%'}}/>
-        <Typography sx={{fontSize:{xs:'15px', md:'25px'}, m:1, fontWeight:'bold'}}>Contact Information</Typography>
-        <TextInput T_htmlFor="email" T_labelText='Email Address' T_FW_sx01='fontWeight' T_FW_sx02='bold' TF_ID='email' TF_label='Email Address' TF_required={true} TF_size='small' />        
-        <TextInput T_htmlFor="phonenumber" T_labelText='Phone Number' T_FW_sx01="{{fontWeight:'bold'}}" T_FW_sx02='bold' TF_ID='phonenumber' TF_label='Phone Number' TF_required={true} TF_size='small' />
-        <Box>
-          <Checkbox size='small' />Text me updates about my iCommerce order.
-        </Box>
-        <Button variant="contained" sx={{my:3}} data-testid='checkoutBtn10'>Continue to Payment Information</Button>
+        <form onSubmit={handleSubmit}>          
+          {/* <TextField label="First Name" name="firstname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
+          {/* <TextField label="Last Name" name="lastname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
+          <TextField label="Full Name" name="fullname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
+          {/* <TextField label="User name" name="username" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
+          {/* <TextField label="Password" name="password" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
+          <TextField label="Address" name="address" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/>
+          {/* <TextField label="Country" name="country" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
+          {/* <TextField label="City" name="city" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/> */}
+          {/* <TextField label="Street" name="street" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
+          {/* <TextField label="Number" name="number" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
+          {/* <TextField label="Zip Code" name="zipcode" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/> */}
+          <TextField label="Image URL" name="image" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/>
+          <Divider sx={{my:1, width:'100%'}}/>
+          <Typography sx={{fontSize:{xs:'15px', md:'25px'}, m:1, fontWeight:'bold'}}>Contact Information</Typography>
+          <TextField label="Email Address" name="email" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
+          <TextField label="Phone Number" name="phonenumber" helperText="" onChange={handleChange} required={true}/><br/>
+          <Box>
+            <Checkbox size='small' />Text me updates about my iCommerce order.
+          </Box>
+          <Box>
+            <Tooltip title="Submit & Continue to Payment Information">
+              <Button variant="contained" type="submit" sx={{my:3}} data-testid='checkoutBtn10'>Submit</Button>
+            </Tooltip>
+            <Tooltip title="Cancel and discard basket">
+              <Button variant="contained" sx={{m:0.5, flexGrow:1}} onClick={()=>handleCancel()}>Cancel</Button>
+            </Tooltip>
+          </Box>
+        </form>
       </Box>
     </>
   );

@@ -8,9 +8,10 @@ router.get('/users', (req, res)=>{
   });
 });
 
-router.get('/users/id', (req, res)=>{
+router.get('/users/:id', (req, res)=>{
+  console.log('req.params._id, ', req)
   User.findById(req.params.id, (err, user)=>{
-    // console.log('req.params._id, ', req.params.id)
+    console.log('req.params._id, ', req.params.id)
     if(!user){
       res.status(404).send('No result found');
     }else{
@@ -19,8 +20,9 @@ router.get('/users/id', (req, res)=>{
   });
 });
 
-router.post('/users', (req, res)=>{
+router.post('/users', (req, res)=>{  
   let user = new User(req.body);
+  console.log('post a user', user)
   user.save()
     .then(user =>{
       res.send(user);
@@ -53,5 +55,7 @@ router.delete('/users/:id', (req, res)=>{
     }
   })
 });
+
+
 
 module.exports = router;

@@ -1,9 +1,9 @@
 import React from 'react';
-
+import RegisterForm from './RegisterForm'
 const UserAdd = () => {
   return (
     <div>
-      UserAdd
+      <RegisterForm />
     </div>
   );
 };

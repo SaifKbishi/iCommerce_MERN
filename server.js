@@ -24,7 +24,7 @@ mongoose.connection.on('error', (error)=>{
 });
 
 
-ecomapp.get('/', (req, res)=>{res.send('Howdy from mern_ecommerce')});
+ecomapp.get('/', (req, res)=>{res.send('Howdy from mern_ecommerce 1')});
 
 ecomapp.listen(PORT, ()=>{
   console.log(`Server listening on port ${PORT}`);
