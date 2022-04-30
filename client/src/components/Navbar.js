@@ -44,7 +44,15 @@ export default function Navbar() {
     console.log('open profile');
   };
   const handleLogInLogout = ()=>{
-    setIsLoggedIn(!isLoggedIn)
+    if(!isLoggedIn){
+      let path = `/v2/users/signin`;
+      navigate(path);
+      // setIsLoggedIn(!isLoggedIn)
+    }else{
+      let path = `/v3/products`;
+      navigate(path);
+      setIsLoggedIn(false)
+    }
   }
   const handleRegister=()=>{
     let path = `/register`; 
@@ -100,7 +108,7 @@ export default function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              <MUILink component={RouterLink} to="/products" color="inherit" underline="hover" 
+              <MUILink component={RouterLink} to="/v3/products" color="inherit" underline="hover" 
                 onClick={handleCloseNavMenu}
                 sx={{ my: 3, mx:1, color: 'black', display: 'block' }} textAlign="center"
                 >Products</MUILink>                
@@ -122,7 +130,7 @@ export default function Navbar() {
             <Typography  variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }} >iAmazon</Typography>
           </MUILink>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }} >
-              <MUILink component={RouterLink} to="/products" color="inherit" underline="hover" 
+              <MUILink component={RouterLink} to="/v3/products" color="inherit" underline="hover" 
               // onClick={handleCloseNavMenu}
               sx={{ my: 3, mx:1, color: 'secondary', display: 'block' }}
               >PRODUCTS</MUILink>

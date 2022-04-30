@@ -22,7 +22,15 @@ const userSchema = new mongoose.Schema({
   },
   address:{
     type: String,
-  }
+  },
+  username:{
+    type: String,
+    required: [false, "username cannot be blank"]
+  },
+  password:{
+    type: String,
+    required: [false, "password cannot be blank"]
+  },
 });
 
 module.exports = mongoose.model('User', userSchema);

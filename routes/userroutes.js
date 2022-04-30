@@ -2,16 +2,16 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 
-router.get('/users', (req, res)=>{
+router.get('/users', (req, res)=>{  //fetch all users by ID
   User.find((err, user)=>{
     res.json(user);
   });
 });
 
-router.get('/users/:id', (req, res)=>{
-  console.log('req.params._id, ', req)
+router.get('/users/:id', (req, res)=>{  //find user by ID
+  // console.log('req.params._id, ', req)
   User.findById(req.params.id, (err, user)=>{
-    console.log('req.params._id, ', req.params.id)
+    // console.log('req.params._id, ', req.params.id)
     if(!user){
       res.status(404).send('No result found');
     }else{
@@ -20,9 +20,21 @@ router.get('/users/:id', (req, res)=>{
   });
 });
 
-router.post('/users', (req, res)=>{  
+router.post('/users/signin', (req, res)=>{
+  // console.log('24 req.body: ', req.body);
+  User.exists({username: req.body.username, password: req.body.password}, (err, result)=>{
+    if(err){
+      res.send(err);
+    }else{
+      // console.log('user exists :)', 'result: ', result._id)
+      res.send(result);
+    }
+  });  
+});
+
+router.post('/users', (req, res)=>{  //add new user
   let user = new User(req.body);
-  console.log('post a user', user)
+  // console.log('post a user', user)
   user.save()
     .then(user =>{
       res.send(user);
@@ -32,7 +44,7 @@ router.post('/users', (req, res)=>{
     });
 });
 
-router.patch('/users/:id', (req, res)=>{
+router.patch('/users/:id', (req, res)=>{ //update user by ID
   User.findByIdAndUpdate(req.params.id, req.body)
     .then(()=>{
       res.json('User updated');
@@ -42,7 +54,7 @@ router.patch('/users/:id', (req, res)=>{
     });
 });
 
-router.delete('/users/:id', (req, res)=>{
+router.delete('/users/:id', (req, res)=>{ //delete user by ID
   User.findById(req.params.id, (err, user)=>{
     if(!user){
       res.status(404).send('User not found');
@@ -56,6 +68,8 @@ router.delete('/users/:id', (req, res)=>{
   })
 });
 
-
+router.delete('/users/deleteall', (req, res)=>{
+   User.deleteMany({});
+});
 
 module.exports = router;

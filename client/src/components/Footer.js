@@ -5,7 +5,7 @@ import {Box,Typography,} from '@mui/material/';
 
 const Footer = () => {
   return (
-    <Box sx={{display: 'flex', justifyContent:'center', background:'#C2CAD0', mt:10}}>
+    <Box sx={{display: 'flex', justifyContent:'center', alignItems:'flex-end', background:'#C2CAD0', mt:10, position:'fixed',  bottom:0, width:'100%'}}>
       <MUILink component={RouterLink} to="/" color="inherit" underline="none" sx={{ my: 3, mx:2, color: 'success', display: 'block' }} textAlign="center">
       <Typography
         variant="h5"

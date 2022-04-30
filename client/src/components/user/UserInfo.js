@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate, useParams, Link as RouterLink } from "react-router-dom";
 import {Link as MUILink} from '@mui/material/';
-import {Box, Typography, Button, Divider, Checkbox,CardMedia} from '@mui/material/';
+import {Box, Typography, Button, Divider, Checkbox,CardMedia,Container} from '@mui/material/';
 
 const UserInfo = () => {
   const [user, setUser] = useState([]);
@@ -22,7 +22,8 @@ const UserInfo = () => {
   },[]);
 
   return (
-    <Box sx={{mt:15}}>
+    <Container sx={{display:'flex', flexDirection:{xs:'column-reverse', sm:'row'}, my:12,p:1, alignItems: 'center' }}>
+    <Box >
       <Typography>Full name: {user.fullname}</Typography>
       <Typography>Phone number: {user.phonenumber}</Typography>
       <Typography>Email: {user.email}</Typography>
@@ -32,9 +33,10 @@ const UserInfo = () => {
         height="140"
         width="140"
         image={user.image}
-        alt="green iguana"
+        alt={user.fullname}
       />
     </Box>
+    </Container>
   );
 };
 

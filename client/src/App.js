@@ -14,6 +14,7 @@ import UsersList from './components/user/UsersList';
 import UserInfo from './components/user/UserInfo';
 import UserAdd from './components/user/UserAdd';
 import UserEdit from './components/user/UserEdit';
+import SignIn from './components/user/SignIn';
 
 import Products from './components/product/Products';
 import ProductAdd from './components/product/ProductAdd';
@@ -42,15 +43,16 @@ function App() {
         <Route path="/smallBasket" element={<SmallBasket/>} />        
         <Route path="/register" element={<Register/>} />
 
-        <Route path="/products" element={<Products/>} />
-        <Route path="/products/new" element={<ProductAdd/>} />
-        <Route path="/products/:id" element={<ProductInfo/>} />
-        <Route path="/products/:id/edit" element={<ProductEdit/>} />
+        <Route path="/v3/products" element={<Products/>} />
+        <Route path="/v3/products/new" element={<ProductAdd/>} />
+        <Route path="/v3/products/:id" element={<ProductInfo/>} />
+        <Route path="/v3/products/:id/edit" element={<ProductEdit/>} />
         
-        <Route path="/users" element={<UsersList/>} />
-        <Route path="/users/:id" element={<UserInfo/>} />
-        <Route path="/users/new" element={<UserAdd/>} />
-        <Route path="/users/:id/edit" element={<UserEdit/>} />
+        <Route path="/v2/users" element={<UsersList/>} />
+        <Route path="/v2/users/:id" element={<UserInfo/>} />
+        <Route path="/v2/users/new" element={<UserAdd/>} />
+        <Route path="/v2/users/:id/edit" element={<UserEdit/>} />
+        <Route path="/v2/users/signin" element={<SignIn/>} />
       </Routes>
       <Footer/>
     </BrowserRouter>

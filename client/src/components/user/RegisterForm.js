@@ -5,8 +5,8 @@ import {Link as MUILink} from '@mui/material/';
 import {Box, Typography,TextField, Button, Divider, Checkbox, Tooltip} from '@mui/material/';
 
 const RegisterForm = () => {
-  // const initialState =   {name:{firstname:'', lastname:'',}, username:'', password:'', phonenumber:'', email:'', image:'', address:{country:'',city:'', street:'', number:'',zipcode:'',},};
-  const initialState =   {fullname:'', phonenumber:'', email:'', image:'', address:'',};
+  // const initialState =   {name:{firstname:'', lastname:'',}, username:'', , phonenumber:'', email:'', image:'', address:{country:'',city:'', street:'', number:'',zipcode:'',},};
+  const initialState =   {fullname:'', phonenumber:'', email:'', image:'', address:'', username:'', password:''};
   const [register, setRegister] = useState(initialState); 
   const navigate = useNavigate();
 
@@ -15,7 +15,7 @@ const RegisterForm = () => {
     const submitUserDetails =async()=>{
       try {
         const responseData = await axios.post(`/v2/users`, register);
-        navigate(`/users/${responseData.data._id}`);
+        navigate(`/v2/users/${responseData.data._id}`);
       } catch (error) {
         console.log(`Error registering your Info. ${error}.`)
       }
@@ -30,7 +30,7 @@ const RegisterForm = () => {
   }
 
   const handleCancel=()=>{
-    navigate(`/products`);
+    navigate(`/v3/products`);
   }
 
   return (
@@ -47,8 +47,6 @@ const RegisterForm = () => {
           {/* <TextField label="First Name" name="firstname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
           {/* <TextField label="Last Name" name="lastname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
           <TextField label="Full Name" name="fullname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
-          {/* <TextField label="User name" name="username" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
-          {/* <TextField label="Password" name="password" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
           <TextField label="Address" name="address" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/>
           {/* <TextField label="Country" name="country" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
           {/* <TextField label="City" name="city" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/> */}
@@ -56,6 +54,9 @@ const RegisterForm = () => {
           {/* <TextField label="Number" name="number" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
           {/* <TextField label="Zip Code" name="zipcode" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/> */}
           <TextField label="Image URL" name="image" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/>
+          <Divider sx={{my:1, width:'100%'}}/>
+          <TextField label="User name" name="username" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
+          <TextField label="Password" name="password" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
           <Divider sx={{my:1, width:'100%'}}/>
           <Typography sx={{fontSize:{xs:'15px', md:'25px'}, m:1, fontWeight:'bold'}}>Contact Information</Typography>
           <TextField label="Email Address" name="email" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
