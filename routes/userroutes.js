@@ -9,9 +9,7 @@ router.get('/users', (req, res)=>{  //fetch all users by ID
 });
 
 router.get('/users/:id', (req, res)=>{  //find user by ID
-  // console.log('req.params._id, ', req)
   User.findById(req.params.id, (err, user)=>{
-    // console.log('req.params._id, ', req.params.id)
     if(!user){
       res.status(404).send('No result found');
     }else{
@@ -21,12 +19,10 @@ router.get('/users/:id', (req, res)=>{  //find user by ID
 });
 
 router.post('/users/signin', (req, res)=>{
-  // console.log('24 req.body: ', req.body);
   User.exists({username: req.body.username, password: req.body.password}, (err, result)=>{
     if(err){
       res.send(err);
     }else{
-      // console.log('user exists :)', 'result: ', result._id)
       res.send(result);
     }
   });  

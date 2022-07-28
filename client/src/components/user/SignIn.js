@@ -9,6 +9,7 @@ const SignIn = () => {
   const [signIn, setSignIn] = useState(initialState); 
   const navigate = useNavigate();
 //http://localhost:3000/v2/users/626d3710b0b116eeb343cdb4/2
+
   const handleSubmit =(e)=>{
     e.preventDefault();
     // console.log('14 login submit', signIn);
@@ -22,7 +23,6 @@ const SignIn = () => {
       }
     }
     submitLoginDetails();
-
   }
   const handleChange = (e)=>{
     console.log(e.target.value,' ', e.target.name);
@@ -32,7 +32,6 @@ const SignIn = () => {
   const handleCancel=()=>{
     navigate(`/v3/products`);
   }
-
 
 
   return (

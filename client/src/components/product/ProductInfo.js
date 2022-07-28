@@ -50,7 +50,7 @@ const ProductInfo = () => {
     return(
     <>
       Loading...
-      <Box sx={{display:'flex', flexDirection:{xs:'column', sm:'row'}, justifyContent:'center'}} >
+      <Box sx={{display:'flex', flexDirection:{xs:'column', sm:'row'}, justifyContent:'center', m:5}} >
         <Box paddingRight='30px'>      
           <Skeleton height={600} width={500} /> 
         </Box>   
@@ -81,15 +81,92 @@ const ProductInfo = () => {
 
 
   return (
-    <div >
+    <Container maxWidth={false} className={styles.productContainer} 
+      sx={{
+        display:'flex', 
+        flexDirection:{xs:'column', md:'row'},
+        px:{xs:3, md:10},
+        mb:{xs:5, md:2}
+      }}>
+      {loading ? <Loading/> :
+        <Card className={styles.card} sx={{display:'flex', flexDirection:{xs:'column', md:'row'}, justifyContent:'center'}}>
+          <CardMedia 
+            className={styles.media}
+            component="img"
+            image={product.image}
+            alt={product.title}
+            sx={{width:{xs:150,md:250}}}
+            />
+          <CardContent sx={{flexGrow:1, m:2, }}>
+            <Typography color="text.secondary" sx={{fontSize:{xs:10, md:20}, textTransform: 'uppercase'}}>
+              {product.category}
+            </Typography>
+            <Typography variant="h2" color="text.secondary" sx={{fontSize:{xs: '1rem', sm:'2rem'}}}>
+              {product.title}
+            </Typography>
+            <Typography component="legend" sx={{fontSize:{xs:10, md:20}}}>Rating</Typography>
+            <Rating
+              name="simple-controlled"
+              value={product.rating && product.rating.rate}
+              onChange={(event, newValue) => {
+                setRating(newValue);
+              }}
+            />
+            <Typography sx={{py:1, fontSize:{xs:'20px', sm:'40px'}, fontWeight:'bold'}}>
+              $ {product.price}
+            </Typography>
+            <Typography color="text.secondary" sx={{fontSize:{xs:10, md:20},my:1}}>
+              {product.description}
+            </Typography>
+            <Box sx={{display:'flex', justifyContent: 'flex-start', alignSelf: 'flex-end', flexWrap:'wrap', mt:10 }}>
+              <Button variant="contained" sx={{m:0.5, flexGrow:1}} onClick={()=>addProduct(product)}>Add to Cart</Button>
+              <Button variant="contained" sx={{m:0.5, flexGrow:1}} onClick={() => routeChange()}>Go to Cart</Button>
+              <Button variant="contained" sx={{display:{xs:'flex', md:'none'}, m:0.5, flexGrow:1}} onClick={() => goToProducts()}>Continue Shopping</Button>
+            </Box>
+          </CardContent>
+        </Card>
+      } 
+      </Container>
+  );
+};
+
+export default ProductInfo;
+
+const useStyles = makeStyles({
+  productContainer: {
+    // margin:'150px',
+    // width: '90%',
+    // minHeight: '900px'  
+  },
+  card:{
+    display: 'flex',
+    width: '90%',
+    padding: '10px',
+    marginTop: '70px',
+    marginBottom: '60px',
+  },
+  media:{    
+    maxHeight: '500px',
+    width: '90%',
+    margin: '5%',
+    objectFit: 'contain !important',
+    alignSelf: 'center'    
+  },
+});
+
+
+
+/**
+ * <div >
     {loading ? <Loading/> :
       <Container maxWidth={false} className={styles.productContainer}>
-        <Card  className={styles.card} sx={{display:'flex', flexDirection:{xs:'column', sm:'row'}, justifyContent:'center'}}>
+        <Card className={styles.card} sx={{display:'flex', flexDirection:{xs:'column', sm:'row'}, justifyContent:'center'}}>
           <CardMedia 
           className={styles.media}
           component="img"
           image={product.image}
           alt={product.title}
+          width={'80%'}
           />
           <CardContent sx={{flexGrow:1, m:2, }}>
             <Typography variant="h5" color="text.secondary" sx={{textTransform: 'uppercase'}}>
@@ -122,29 +199,4 @@ const ProductInfo = () => {
       </Container>
       } 
     </div>
-  );
-};
-
-export default ProductInfo;
-
-const useStyles = makeStyles({
-  productContainer: {    
-    // boxShadow: '0 3px 3px 3px rgba(194, 202, 208,  .3)',
-    // marginTop:'105px',
-    width: '90%'
-  },
-  card:{
-    display: 'flex',
-    width: '100%',
-    margin: '0px',
-    padding: '10px',
-    marginTop: '70px'
-  },
-  media:{
-    maxHeight: '500px',     // as an example I am modifying width and height
-    width: '60%',
-    margin: '5%',
-    objectFit: 'contain',
-    alignSelf: 'center'
-  },
-});
+ */

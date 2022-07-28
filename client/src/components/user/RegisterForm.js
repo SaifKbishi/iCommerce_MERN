@@ -21,7 +21,6 @@ const RegisterForm = () => {
       }
     }
     submitUserDetails();
-
   }
 
   const handleChange = (e)=>{
@@ -46,7 +45,7 @@ const RegisterForm = () => {
         <form onSubmit={handleSubmit}>          
           {/* <TextField label="First Name" name="firstname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
           {/* <TextField label="Last Name" name="lastname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/> */}
-          <TextField label="Full Name" name="fullname" helperText="" onChange={handleChange} required={true} sx={{mb:1}}/><br/>
+          <TextField label="Full Name" name="fullname" helperText="" onChange={handleChange} required={true} sx={{mb:1}} /><br/>
           <TextField label="Address" name="address" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/>
           {/* <TextField label="Country" name="country" helperText="" onChange={handleChange} required={false} sx={{mb:0.5}}/><br/> */}
           {/* <TextField label="City" name="city" helperText="" onChange={handleChange} required={false} sx={{mb:1}}/><br/> */}

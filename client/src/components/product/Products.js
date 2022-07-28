@@ -87,7 +87,7 @@ const Products = () => {
   }
   const routeChange=(prodId)=>{
     // console.log('prodId', prodId)
-    let path = `/products/${prodId}`; 
+    let path = `/v3/products/${prodId}`; 
     navigate(path);
     // history.push(path);
   }

@@ -10,7 +10,7 @@ router.get('/products', (req, res)=>{
 
 router.get('/products/:id', (req, res)=>{
   Product.findById(req.params.id, (err, product)=>{    
-    console.log('req.params._id, ', req.params.id)
+    // console.log('req.params._id, ', req.params.id)
     if(!product){
       res.status(404).send('No product found');
     }else{
